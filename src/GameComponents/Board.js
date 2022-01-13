@@ -1,51 +1,31 @@
 import React, { useState } from "react";
-import Tile from "./Tile";
 import "./style.css";
+import { builTable } from "../common/buildTable";
 
 function Board() {
   const initialState = ["", "", "", "", "", "", "", "", ""];
+  const signOf = ["X", "O"];
   const [gameState, updateGameState] = useState(initialState);
-
-  const builTable = () => {
-    const rows = [];
-
-    for (let row = 0; row < 3; row++) {
-      const columns = [];
-
-      for (let column = 0; column < 3; column++) {
-        columns.push(
-          <td key={column}>
-            <Tile
-              id={row * 3 + column}
-              gameState={gameState}
-              whenTilePressed={whenTilePressed}
-            />
-          </td>
-        );
-      }
-
-      rows.push(<tr key={row}>{columns}</tr>);
-    }
-
-    return <tbody>{rows}</tbody>;
-  };
+  const [player, togglePlayer] = useState(0);
 
   const whenTilePressed = (id) => {
     if (gameState[id] !== "") {
       return;
     }
 
-    console.log(id);
     const newGameState = [...gameState];
 
-    newGameState[id] = "X";
+    newGameState[id] = signOf[player];
+
+    console.log(newGameState[id]);
 
     updateGameState(newGameState);
+    togglePlayer(1 - player);
   };
 
   return (
     <div>
-      <table className="board">{builTable()}</table>
+      <table className="board">{builTable(gameState, whenTilePressed)}</table>
     </div>
   );
 }

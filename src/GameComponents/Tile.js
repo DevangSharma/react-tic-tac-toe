@@ -8,7 +8,7 @@ function Tile({ id, gameState, whenTilePressed }) {
         whenTilePressed(id);
       }}
     >
-      {id}
+      {gameState[id]}
     </button>
   );
 }
