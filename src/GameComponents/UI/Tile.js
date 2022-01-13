@@ -3,7 +3,7 @@ import "../style/style.css";
 function Tile({ id, gameState, whenTilePressed }) {
   return (
     <button
-      className="tile"
+      className={`tile player-${gameState[id]}`}
       onClick={() => {
         whenTilePressed(id);
       }}

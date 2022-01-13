@@ -1,5 +1,6 @@
 import HomePage from "./GameComponents/UI/HomePage";
 import "./App.css";
+import "./GameComponents/style/style.css";
 
 function App() {
   return (
