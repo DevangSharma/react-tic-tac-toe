@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import "./style.css";
-import { builTable } from "../common/buildTable";
+import React, { useState, useEffect } from "react";
+import "../style/style.css";
+import { builTable } from "../../common/buildTable";
+import { checkForWin } from "../checkers/checkForWin";
 
 function Board() {
   const initialState = ["", "", "", "", "", "", "", "", ""];
@@ -17,11 +18,15 @@ function Board() {
 
     newGameState[id] = signOf[player];
 
-    console.log(newGameState[id]);
-
     updateGameState(newGameState);
     togglePlayer(1 - player);
   };
+
+  useEffect(() => {
+    if (checkForWin(gameState)) {
+      alert("You Won");
+    }
+  }, [gameState]);
 
   return (
     <div>

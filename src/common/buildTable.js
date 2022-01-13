@@ -1,4 +1,5 @@
-import Tile from "../GameComponents/Tile";
+import Tile from "../GameComponents/UI/Tile";
+import { indexOf } from "./findIndex";
 
 export function builTable(gameState, whenTilePressed) {
   const rows = [];
@@ -10,7 +11,7 @@ export function builTable(gameState, whenTilePressed) {
       columns.push(
         <td key={column}>
           <Tile
-            id={row * 3 + column}
+            id={indexOf(row, column)}
             gameState={gameState}
             whenTilePressed={whenTilePressed}
           />

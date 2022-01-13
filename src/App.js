@@ -1,4 +1,4 @@
-import HomePage from "./GameComponents/HomePage";
+import HomePage from "./GameComponents/UI/HomePage";
 import "./App.css";
 
 function App() {
