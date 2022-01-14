@@ -8,10 +8,11 @@ export const gameContext = React.createContext();
 
 function HomePage() {
   const initialState = ["", "", "", "", "", "", "", "", ""];
-  const signOf = ["X", "O"];
+  const signOf = ["X", "O", "W"];
   const [gameState, updateGameState] = useState(initialState);
   const [player, togglePlayer] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
+  const [headerMessage, updateHeaderMessage] = useState("Turn of X");
 
   return (
     <div className="home">
@@ -25,6 +26,8 @@ function HomePage() {
           initialState: initialState,
           isGameOver: isGameOver,
           setGameOver: setGameOver,
+          headerMessage: headerMessage,
+          updateHeaderMessage: updateHeaderMessage,
         }}
       >
         <Header />

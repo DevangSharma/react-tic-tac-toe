@@ -13,9 +13,10 @@ function Board() {
     signOf,
     isGameOver,
     setGameOver,
+    updateHeaderMessage,
   } = useContext(gameContext);
 
-  const whenTilePressed = (id) => {
+  const whenTilePressed = async (id) => {
     if (isGameOver || gameState[id] !== "") {
       return;
     }
@@ -24,17 +25,20 @@ function Board() {
 
     newGameState[id] = signOf[player];
 
-    togglePlayer(1 - player);
+    await togglePlayer(1 - player);
+    updateHeaderMessage(`Turn of ${signOf[1 - player]}`);
     updateGameState(newGameState);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (checkForWin(gameState)) {
       setGameOver(true);
-      alert("You Won");
+      togglePlayer(1 - player);
+      updateHeaderMessage(`"${signOf[1 - player]}" won this match`);
     } else if (!gameState.includes("")) {
       setGameOver(true);
-      alert("Its a tie");
+      togglePlayer(2);
+      updateHeaderMessage("Its a Tie");
     }
   }, [gameState]);
 
