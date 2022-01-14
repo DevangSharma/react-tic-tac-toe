@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { gameContext } from "./HomePage";
 
 function Reset() {
-  const { updateGameState, initialState } = useContext(gameContext);
+  const { updateGameState, initialState, setGameOver } =
+    useContext(gameContext);
 
   const resetGame = () => {
     updateGameState(initialState);
+    setGameOver(false);
   };
 
   return (

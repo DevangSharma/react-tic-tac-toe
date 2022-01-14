@@ -5,11 +5,18 @@ import { checkForWin } from "../checkers/checkForWin";
 import { gameContext } from "./HomePage";
 
 function Board() {
-  const { gameState, updateGameState, player, togglePlayer, signOf } =
-    useContext(gameContext);
+  const {
+    gameState,
+    updateGameState,
+    player,
+    togglePlayer,
+    signOf,
+    isGameOver,
+    setGameOver,
+  } = useContext(gameContext);
 
   const whenTilePressed = (id) => {
-    if (gameState[id] !== "") {
+    if (isGameOver || gameState[id] !== "") {
       return;
     }
 
@@ -23,7 +30,11 @@ function Board() {
 
   useEffect(() => {
     if (checkForWin(gameState)) {
+      setGameOver(true);
       alert("You Won");
+    } else if (!gameState.includes("")) {
+      setGameOver(true);
+      alert("Its a tie");
     }
   }, [gameState]);
 

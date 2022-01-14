@@ -11,6 +11,7 @@ function HomePage() {
   const signOf = ["X", "O"];
   const [gameState, updateGameState] = useState(initialState);
   const [player, togglePlayer] = useState(0);
+  const [isGameOver, setGameOver] = useState(false);
 
   return (
     <div className="home">
@@ -22,6 +23,8 @@ function HomePage() {
           togglePlayer: togglePlayer,
           signOf: signOf,
           initialState: initialState,
+          isGameOver: isGameOver,
+          setGameOver: setGameOver,
         }}
       >
         <Header />
