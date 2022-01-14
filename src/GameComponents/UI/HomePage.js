@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Board from "./Board";
 import "../style/style.css";
+import Reset from "./reset";
+import Header from "./header";
+
+export const gameContext = React.createContext();
 
 function HomePage() {
+  const initialState = ["", "", "", "", "", "", "", "", ""];
+  const signOf = ["X", "O"];
+  const [gameState, updateGameState] = useState(initialState);
+  const [player, togglePlayer] = useState(0);
+
   return (
     <div className="home">
-      <h1>Welcome to Tic - Tac - Toe</h1>
-      <h1>Turn of X</h1>
-      <Board />
-      <button className="btn">Reset Game</button>
+      <gameContext.Provider
+        value={{
+          gameState: gameState,
+          updateGameState: updateGameState,
+          player: player,
+          togglePlayer: togglePlayer,
+          signOf: signOf,
+          initialState: initialState,
+        }}
+      >
+        <Header />
+        <Board />
+        <Reset />
+      </gameContext.Provider>
     </div>
   );
 }

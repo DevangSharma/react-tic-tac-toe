@@ -44,3 +44,7 @@ tr {
   letter-spacing: 1px;
   cursor: pointer;
 }
+
+.header {
+  text-align: center;
+}

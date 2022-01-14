@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "../style/style.css";
 import { builTable } from "../../common/buildTable";
 import { checkForWin } from "../checkers/checkForWin";
+import { gameContext } from "./HomePage";
 
 function Board() {
-  const initialState = ["", "", "", "", "", "", "", "", ""];
-  const signOf = ["X", "O"];
-  const [gameState, updateGameState] = useState(initialState);
-  const [player, togglePlayer] = useState(0);
+  const { gameState, updateGameState, player, togglePlayer, signOf } =
+    useContext(gameContext);
 
   const whenTilePressed = (id) => {
     if (gameState[id] !== "") {
