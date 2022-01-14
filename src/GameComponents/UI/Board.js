@@ -17,8 +17,8 @@ function Board() {
 
     newGameState[id] = signOf[player];
 
-    updateGameState(newGameState);
     togglePlayer(1 - player);
+    updateGameState(newGameState);
   };
 
   useEffect(() => {
